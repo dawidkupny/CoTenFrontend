@@ -1,0 +1,1141 @@
+
+#Tydzien 2
+
+
+    Ciekawe linki
+        https://validator.w3.org/nu/#textarea
+        https://www.w3.org/TR/html52/
+        coolors.co
+
+!+tab - szkielet strony html w visual studio
+
+https://codepen.io/maciejkorsan/pen/8db755719dea64797342e1840ff2b7ee
+
+#Tydzien 3
+
+Lekcja 5
+Jedno konkretne id powinno być jedno na stronie, nie uzywac tego samego id do wielu elementów.
+
+!important, raczej nie powinno się używać, lepiej unikać.
+
+Specyficzność w CSS, kolejność:
+(!important, style=""), #name, .name, element
+coś co ma wyższą specyficzność wygrywa i ta własność jest brana pod uwagę
+
+Jeśli specyficzność jest równa pierwszeństwo ma selektor "bliżej" elementu. Czyli w zasadzie niżej osadzony w css'ie
+
+Lepiej unikać zagnieżdżeń w selektorach, lepiej stworzyć klasę niż zagnieżdżać pełno elementów.
+Tworzymy klasę nawet jak mamy jeden element danego typu
+
+Starać się, żeby element miał jedną klasę (nie zwiększaj specyficzności bez potrzeby)
+
+Zachęca do wrócenia do tej lekcji po jakimś czasie dla przypomnienia
+
+
+
+Lekcja 4
+
+Kody odpowiedzi
+
+-30x (301, 302 itd.) - przekierowania - Szukasz w złym miejscu - przekieruję Cię w dobre (bo wiem gdzie)
+-404 - Nie ma tego czego szukamy
+-50x - błędy serwera, wewnętrzne z tym nic nie możemy zrobić.
+
+
+https://cotenfrontend.pl/img/wtf.svg
+/ - ten slash to root, określa ścieżkę, gdzie szukać zasobu, czyli w /img/ i tam plik wtf.svg
+
+Scieżki względne(2) i bezwzględne(1):
+https://cotenfrontend.pl/
+1: <img src="/img/wtf.svg"/>    -> 200 OK -> https://cotenfrontend.pl/img/wtf.svg
+
+2: <img src="img/wtf.svg"/>    -> 200 OK -> https://cotenfrontend.pl/img/wtf.svg
+
+
+https://cotenfrontend.pl/podstrona/
+1: <img src="/img/wtf.svg"/>    -> 200 OK -> https://cotenfrontend.pl/img/wtf.svg
+
+2: <img src="img/wtf.svg"/>    -> 404 Not found -> https://cotenfrontend.pl/podstrona/img/wtf.svg
+
+
+
+Lekcja 5
+
+Co to jest ECMAScript
+
+-ECMAScript jest to ustandaryzowany przez organizację ECMA skryptowy język programowania
+-JavaScript implementuje rzeczy ze specyfikacji ECMAScript
+-Rozwój ECMAScript mocno przyspieszył przez szerokie wykorzystywanie JavaScriptu
+-ES6(i nowsze) wprowadzają wiele udogodnień dla developerów
+-Nowe featury mogą nie być wspierane we wszystkich przeglądarkach (ale są na to sposoby)
+
+Czyli JavaScript jest zbudowany na bazie czegoś co się nazywa ECMAScript
+
+Z czego składa się JavaScript?
+
+-Wartości
+-Operacje porównywania
+-Literały
+-Zmienne
+-Obiekty
+-Funkcje
+
+
+#Tydzien 4
+
+Lekcja 4
+
+<div> - nie ma znaczenia semantycznego, używamy gdy chcemy coś "opakować" (tylko kiedy nie istnieje odpowiedni semantyczny znacznik) - nie nalezy go nadużywać
+
+display: block; - powoduje, że te elementy zajmują całą szerokość i zjeżdzają jeden pod drugim
+display: inline; - powoduje, że elementy ustawiają się obok siebie
+display: inline-block; - nadaje elementom dodatkowe własności, które nie są dostępne dla elementów inline, a są dostępne dla elementów block, np width i height.
+max-width: - powoduje, że ma zdefiniowaną maksymalną szerokość, ale może mieć mniejszą, jeśli element się zmniejszy, analogicznie z max-height. Działa to również w drugą stronę,
+min-width i min-height.
+overflow - pozwala na odcinanie treści, która nam wystaje. ma własność, np hidden znaczy, że chowa wszystko co wystaje, auto często dodaje scroll, żeby można było przewinąć po orginalnym
+rozmiarze, mozna otrzymac takie pudełko, które można scrollować.
+
+Lekcja 5
+
+Przy rozmiarach, używając procentów jako jednostki to uwzględnia się je zależnie od rozmiaru rodzica.
+vw-viewport width - to procent z rozmiaru całego okna, a nie rodzica jak to jest standardowo. np. width: 50vw; - div ma rozmiar 50% ekranu, niezależnie od rozmiaru swojego rodzica.
+Dla wysokości analogicznie vh, np. height: 100vh; 
+
+
+Lekcja 6
+
+Każdy element jest elementem prostokątnym - można powiedzieć, że wszystkie elementy otoczone są "niewidzialnym" prostokątem.
+BOX MODEL
+
+             -------------------------------------
+            |margin                               |
+            |    ----------------------------     |
+            |   |border                      |    |
+            |   |     ------------------     |    |
+            |   |    | padding          |    |    |
+            |   |    |    -----------   |    |    |
+            |   |    |   | auto:auto |  |    |    |
+            |   |    |    -----------   |    |    |
+            |   |    |                  |    |    |
+            |   |     ------------------     |    |
+            |   |                            |    |
+            |    ----------------------------     |
+            |                                     |
+             -------------------------------------
+
+1) auto:auto - to jest wysokość i szerokość. (width: 200px i height:300px spowoduje, że auto:auto = 200:300).
+2) padding - jest to wewnętrzny margines, odpowiada za to o ile oddalone mają być elementy, które znajdują się w środku elementu, który ma padding.
+Oprócz zapisu padding: Ypx; lub zapisu padding-top: Ypx;, padding-right: Ypx;, itd. Można zapisać padding: 20px, 40px, 50px, 60px;, wartości będą brane w kolejności top, right, bottom, left - jak kierunek zegara.
+3) border - obramowanie, border-width, border-style np. solid, border-color, albo skrócony border: 10px solid #fff; albo border-top: 3px solid red; itd. Można używać border-radius: 10px; 
+jest to zaokrąglenie obramowania.
+4) margin - margines, odpowiada za to o ile możemy odsunąć się od innych elementów, np. 50px, to element odskakuje o 50px od wszystkich elementów, zapis analogiczny jak powyższe atrybuty, 
+dodatkowy atrybut, można napisać display: inline-block; Elementy są w jednej linii, a jeśli element się nie mieści to przeskoczy do następnego 'wiersza'. 
+Właność marginesu auto - wyśrodkuje elementy, ponieważ stara się podzielić margines na pół np. z lewej i prawej strony. Ważne, aby był zdefiniowany rozmair kontenera, aby obiekt wiedział 
+względem czego ma się 'wyśrodkować' czy ustawić. Margines nie jest częścią elementu, informuje nas tylko o odległości, która musi być zachowana od naszego elementu i działa przy wartościach blokowych.
+
+
+Lekcja 7
+
+Content-box - domyślną wartością box-size jest content-box, szerokość jest np szerokością contentu, nie wpływa na padding, border, czy margin. 
+Border-box definiuje rozmiar całego elementu, jest zrobiony aby można było raz go zdefiniować, a nie był składową wszystkich elementów jak content, padding i border razem. 
+Margines nie jest wliczany
+np.
+width: 100%;
+height: 200px;
+padding: 16px;
+maring: 10px 0;
+box-sizing: border-box;
+
+
+Lekcja 8
+
+- Position pozwala na pozycjonowanie elementów w naszej przestrzeni, można nie pasujące elementy nadpisać. Domyślną własnością dla Position jest static. Position: static; Position: relative;
+- ta pozycja otwiera nam dużo możliwości np. pozwala korzystać z innych pozycji np. z Position: absolute; 
+np.
+position: absolute;
+top: 20px;
+
+oznacza to, że element, który ma właściwość absolute został przesunięty 20px od góry, jeśli wpiszę się bottom: 50%, to będzie liczone 50% od dołu, jak dodamy right: 10px; to będzie
+jeszcze 10 pikseli od prawej. 
+np.
+position: absolute;
+right: 10px;
+bottom: 50%;
+
+Działa to jak typowy układ współrzędnych.
+
+- Jeśli element w elemencie i element podrzędny będzie miał position: absolute, a element nadrzędny position: relative, to będą się przestawiały razem. Jeśli z elementu nadrzędnego usuniemy
+position: relative, to element ten zostanie na swoim miejscu, a element podrzędny mający position: absolute, ustawi się niezależnie od tego elementu nadrzędnego 
+(jest pozycjonowane względem całego body, a nie contenera nadrzędnego) (np. wyjdzie poza ten kontener) 
+w zalezności od wartości rozmiarów jakie będą ustawione.
+
+
+- Atrybut z-index pozwala nam zdefiniować kolejność np. elementów, które nakładają się na siebie. Element, który ma wyższy z-index będzie nałożony na element, który ma mniejszy.
+
+- Position: fixed; Podobny do absolute, Sprawia, że element jest przyklejony (wyskakuje z diva i ustawia się względem okna), jeśli mamy scroll to element fixed porusza się razem ze stroną
+cały czas pozostaje widoczny, w ten sposób można tworzyć nagłówki na stronach, można tworzyć menu przyklejone do góry itp. 
+Co jest ważne, że przy absolute i fixed, szerokość naszego elementu jest kasowana tak jakby był inline-block, więc musimy tę szerokość zdefiniować.
+
+- Position: sticky; Element jest osadzony w divie, rodzic elementu, który ma sticky nie może mieć overflow. Sticky przykleja się dopiero w momencie, gdy dochodzi do krawędzi okna przy 
+scrollowaniu i wtedy się przykleja i zostaje widoczny.
+
+
+Lekcja 9
+
+Float nie służy do budowania layoutów!!!
+
+Float służy do opływania elementów. 
+np.
+float: left; - jeśli mamy zdefiniowany float left, to chcemy mieć element z lewej strony, a cała treść ma mnie opływać (ominąć) z prawej strony. Float nie jest ograniczony, jest zakotwiczony 
+w treści ma zdefiniowany rozmiar, pozostała treść będzie go opływać, np. div, a float jest ponad to i może np wyjść poza rozmiar diva, który go opływa. (Stosuje się np. tekst wokół zdjęcia)
+Można dodać diva z włanością clear: both; co powoduje rozszerzanie naszego diva, moment treści do wyokości najwyższego ze zdefiniowanych float'ów. można dać clear: left; wtedy stanie się tak
+dla floata z left.
+
+
+Lekcja 12
+
+BEM - Block element modifier
+block__element--modifier
+
+przykład w css:
+.hand
+
+.hand__finger
+
+.hand__finger--thumb
+.hand__finger--pinky
+
+przełożenie na html:
+<div class="hand">
+    <div class="hand__finger hand__finger--thumb"></div>
+    <div class="hand__finger"></div>
+    <div class="hand__finger"></div>
+    <div class="hand__finger"></div>
+    <div class="hand__finger hand__finger--pinky"></div>
+</div>
+
+B - Block - nadrzędny element - coś co ograniczna nasz content, nasz element
+E - Element - część bloku on nie musi być bezpośrednim dzieckiem
+M - Modifier - modyfikator, jeśli element występuje w kilku wariacjach tworzymy dodatkową klasę.
+
+
+Lekcja 13
+
+-DOM to "złożony" w przeglądarce HTML
+-JavaScript może modyfikować DOM
+-funkcja querySelector zwraca node(węzeł) z HTML-a,
+a selector jest zapisywany zgodnie z css
+-korzystając z BEM tworzymy dodatkową klasę z modyfikatorem --js
+(ułatwia identyfikację/usuwa potencjalne problemy)
+
+
+Tydzien V
+
+Spoko źródła 👍
+Dokumentacja narzędzia z którego korzystasz
+GitHub issues
+https://developer.mozilla.org 🇵🇱󾓪
+https://devdocs.io/ 󾓪
+https://caniuse.com/ 󾓪
+https://css-tricks.com/almanac/ 󾓪
+https://www.w3.org/TR/html52/ 󾓪
+https://www.w3.org/TR/CSS/ 󾓪
+
+Fajne grupy polskojęzyczne 👩‍💻👨🏼‍💻
+https://www.facebook.com/groups/742940452405327/
+HTML, CSS i JS: pierwsze kroki
+https://www.facebook.com/groups/1485218891734165/
+Front-end: pierwsza praca w HTML5, CSS3 i JavaScript
+https://www.facebook.com/groups/157790704649699/
+Programowanie - wsparcie na starcie
+https://www.facebook.com/groups/programujdziewczyno/
+Programuj dziewczyno
+https://crossweb.pl/
+Grupy lokalnych spotkań programistycznych (meet.js, dev.js)
+
+Lekcja 8
+
+"Typowy reset"
+* - tzw. selektor uniwersalny, który wybiera wszystkie elementy na stronie
+* {
+    maring: 0px;
+    padding: 0px;
+}
+- nie polecane.
+
+
+Nomralizacja - sprawia, że nasze elementy wyglądają jakby były ostylowane przez domyślny styl przeglądarki. Nomralizacja usprawnia nam wyświetlanie elementów pomiędzy różnymi
+przeglądarkami i kiedy będzie się budować kolejne projekty warto go dołączyć.
+
+Można zmiksować
+
+Normalize.css + html {
+                    box-sizing: border-box;
+                }
+
+                *, *:before, *after {
+                    box-sizing: inherit;
+                }
+
+
+
+Lekcja 9
+
+display: flex;  zamienia nasz display, domyslny blok na nowy system pozycjonowania i rozmieszczania elementów. Flex pracuje w dwóch osiach w osi poziomej i pionowej (wiersz, kolumna) 
+elementy ustawiają się w rzędzie i przyklejone są do lewej strony.
+flex-direction: (domuślnie row), jak zmienimy na column, to wszystko ustawia się w pionie (dostępne jeszcze: row-reverse, column-reverse).
+Flex box stara się upchać wszystko w jednym wierszu/kolumnie dlatego też zmniejsza rozmiar.
+
+flex-wrap: wrap; -tworzą się kolumny i wiersze o zdefiniowanym rozmiarze i felx box ustawia je tak jak się mieszczą, jeśli rozszerzymy ekran i felx box znajdzie wystarczjąco miejsca
+to upchnie kolejny element, a kolejne zwyczajnie dalej wiersz niżej. Taka resposywnosć. (jest jeszcze wrap-reverse).
+
+flex-flow: row wrap; -zamiennik jakby dwóch powyższych w jedno.
+
+justify-content: -ustawienie elementów wzdłuż osi flex-direction (flex-start, flex-end, center, space-between, space-around). 
+
+align-content: -ustawianie wierszy/kolumn wzdłuż osi przeciwnej do flex-direction (taki justify-content dla drugiej osi). (stretch, flex-start, flex-end, center, space-between, space-around). 
+
+align-items: -ustawianie elementów wzdłuż osi przeciwnej do flex-direction, ale w obrębie pojedycznego wiersza. (stretch, flex-start, flex-end, center, baseline). 
+
+align-self: -ustawianie elementu wzdłuż osi przeciwnej do flex-direction. (stretch, flex-start, flex-end, center, baseline).
+
+order: -kolejność (domyślnie 0). można ustawiać kolejność elementów, trzeba zdefiniować wartość w poszczególnych klasach css.
+
+flex-grow: -współczynnik, który odpowiada za to jak bardzo element powinien rosnąć jeśli pozostaje jakieś wolne miejsce, aby je wypełnić. Domyślna wartość to 0, czyli elementy nie rosną
+jeśli wpiszemy flex-grow: 1, wtedy elementy będą wypełniać cały wiersz, będą na 100% wiersza. Można inny element ustawić na 2 i wtedy on dostanie 2x więcej miejsca niż te co mają 1.
+
+flex-shrink: (domyślnie 1). Jeśli ustawimy na 0 to elementy przestają się kurczyć poza zdefiniowany rozmiar i zaczną wychodzić poza kontener (chować się poza ekranem). Jeśli jest na 0
+to elementy kurczą się proporcjonalnie. 
+
+flex-basis: -taki rozmiar bazowy, określenie minimalnej szerokości/wysokości elementu wewnątrz naszego kontenera flexowego.
+
+flex: <flex-grow> <flex-shrink> <flex-basis> np. flex: 1 0 150px;
+
+
+
+Różnica pomiędzy gridem a flexem to, że grida używamy do budowania layoutu, jeśli widzimy, że mamy gdzieś min dwie kolumny to grid, a jeśli widzimy, że jakiś element jest wypozycjonowany wewnątrz innego elementu to wtedy flex.
+
+
+Lekcja 10
+
+Tła
+
+background-image: url('sciezka do pliku'); 
+background-position: -ustawia tło względem elementu, który to tło dostaje (domyślna wartość 0,0 - lewy górny róg). Np. center center - tło zawsze będzie zaczynało się od środka. 
+Można bottom center, itd. Można podoawać procenty i wszystkie inne jednostki z css. 
+
+tip:
+body {
+    min-height: 100vh; -ustawia body na wysokość całej storny.
+}
+
+background-repeat: 
+background-attachment: <scroll> tło idzie razem ze stroną, <fixed> tło się nie rusza, jest przyklejone, <local> tło się scrolluje/przesuwa raze z treścią np. w jakimś divie.
+background-origin: -własność, która definiuje nam w którym miejscu te tło się powinno zaczynać <padding-box> <border-box> <content-box>
+background-clip: <padding-box> <border-box> <content-box> - pokazuje w którym miejscu tło powinno być cięte.
+background-color: przy rgb, można zrobić pół przeźroczyste tło, jako czwarty element w rgba(255,255,255,0.495);
+background-size: <auto>,<cover>,<contain>,<width> <height>
+
+gradienty
+https://cssgradient.io/gradient-backgrounds/
+
+całościowy zapis, jako ciekawostka, ale dla czytelności raczej rzadko się stosuje, lepiej to oddzielić:
+background:
+    url(background.jpg)         /* image */
+    top center / 200px 200px    /* position / size */
+    no-repeat                   /* repeat */
+    fixed                       /* attachment */
+    padding-box                 /* origin */
+    content-box                 /* clip */
+    red;                        /* color */
+
+
+
+Lekcja 11
+
+Program figma - figma.com 
+Warto założyć konto
+
+
+Tydzien VI 
+
+Lekcja 3 Formularze: form, input & label
+
+- przykładowy formularz w html
+
+<form>
+    <p>
+        <label for="firstName">Your name:</label>
+        <input type="text" id="firstName" name="firstName">
+    </p>
+</form>
+
+Można również opakować znacznik input w znacznik label i nie trzeba wtedy używać atrybutu for, działa to tak samo.
+
+
+Lekcja 4 Formularze: fieldset, radio, checkbox
+
+Fieldset grupuje Formularze, przykład:
+
+<fieldset>
+    <legend>Address</legend>
+    
+    <p>
+        <label>Street name:
+            <input class="form__item" id="streetName" placeholder="enter street name" name="streetName"/>
+        </label>
+    </p>
+    <p>
+        <label>City:
+            <input class="form__item" id="city" placeholder="enter city" name="city"/>
+        </label>
+    </p>
+</fieldset>
+
+tak samo się używa input type="radio", type="checkbox" itd.
+
+
+Lekcja 7 Formularze
+
+Jeśli w formularzu nie działa wysyłanie plików to należy ustawić atrybut enctype:
+
+-enctype="application/x-www-form-urlencoded"*
+        ="multipart/form-data"**
+
+*- wartość domyślna
+**- używamy, kiedy wysyłamy pliki
+
+
+Wyrażenia reguralne
+
+html5pattern.com/Names
+
+
+Lekcja 9 CSS:Grid
+
+display: grid;
+grid-template-columns: 100px 500px 150px; -przyklad
+grid-template-rows: 100px 200px;
+
+nowa jednostka fr - to taki ułamek
+1fr/4 1fr/4 2fr/4
+--      --      ----
+np
+grid-template-columns: 1fr 1fr;
+mozna zastosowac takze : 200px 1fr 1fr; -wartosc fr brana jest z wolnej przestrzeni, która nie jest zdefiniowana z żadnej jednostki
+
+repeat() np.
+grid-template-columns: repeat(4, 1fr); -stworzy 4 kolumny z 1fr
+
+column-gap: 16px; -tworzy przerwy między komórkami grida, nie wypływają na zewnątrz
+row-gap: 16px; -j.w. tylko pomiędzy wierszami.
+
+Grid bardzo szybko i bardzo łatwo pozwala na modyfikowanie wyglądu.
+
+grid-template-columns: minmax(200px, 1fr); - funkcja ta działa na takim zakresie, w tym przykladzie maksymalna wartość którą można przyjąć to 1fr, a minimalna to 200px
+
+
+Lekcja 10 Grid-podstawowy layout
+
+<aside> - tag w html dla panelu bocznego
+
+display: grid;
+grid-template-areas: "header header" -pierwszy wiersz sklada się z dwóch kolumn,
+"article aside"
+"footer footer";
+
+.header {
+        grid-area: header;
+}
+
+.article {
+        grid-area: article;
+}
+
+
+.aside {
+        grid-area: aside;
+}
+
+
+.footer {
+        grid-area: footer;
+}
+
+nie zdefiniowany obszar mozna zapisac za pomoca kropki, ale trzeba pamietac, aby zdefiniować rozmiar, np:
+
+display: grid;
+grid-template-areas: "header header header"
+"article . aside"
+"footer footer footer";
+grid-template-columns: 1fr, 64px, 200px;
+
+column-gap: 16px - odstępy między kolumnami
+row-gap: 16px - odstępy między wierszami
+
+
+definiowanie od kiedy kolumna ma się zacząć np. zeby header zaczynał się od drugiej kolumny
+grid-column-start: 2;
+grid-column-end: 4;
+
+analogicznie z wierszami grid-row-start / end
+
+
+Można wartości także nazywać i odnośić się do nich po ich nazwach np.
+grid-template-columns: [pierwsza] 1fr, [druga] 64px, [trzecia] 200px;
+grid-column-start: pierwsza;
+grid-column-end: trzecia;
+
+grid-column-start: pierwsza;
+grid-column-start: span 3; - oznacza idź przez 3 kolumny
+
+
+do definiowania wierszy i kolumn za pomocą liczb i nazw moża użyć także grid-area
+grid-area: row start / col start / row end / col end
+grid-area: 1 / pierwsza / 3 / span 3
+
+
+Grid to nie tetris - wszystko zamyka się w reguralnych prostokątach.
+Grid działa tylko na bezpośrednie dzieci swoje, nie można zejść do kolejnych potomków, ale są pracę nad tym, aby można było.
+Grid nie zastępuje flexboxa, ale się dobrze uzupełniają. Grid jest stosowany do budowania całych layoutów, 
+a z koleiflexbox jest używany do pozycjonowania elementów, centrowania już wewnątrz jakiegoś pojedynczego elementu do konkretnej treści,
+ale nie używajmy flexboxa do budowania layoutów.
+
+
+
+Lekcja 11 CSS: Media queries & mobile first
+
+@media - słowo kluczowe, serce media queries
+
+media type:
+@media screen, print, all ...
+
+media feature:
+max-width
+max-width
+color
+aspect-radio
+orientation
+...
+
+można to łączyć za pomocą and, not i przecinka
+
+np.
+@media screen and (max-width: 600px) {  -można to traktować jako osobny plik css, który działa tylko i wyłącznie na ekranie, któr ma maksymalną szerokość 600px
+        body {
+                background: red;
+        }
+
+        .footer {
+                background: blue;
+        }
+}
+
+dobrze media queries definiować po zdefiniowaniu naszego elementu, aby element nie nadpisał właściwości z media queries
+
+-moblie first - polega na tym, że stylujemy najpierw na urządzenie mobline
+
+można także elementy chować, np:
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+        .moblie {
+                display: none;
+        }
+}
+
+można za pomocą media queries nadpisywać pojedynczą własność, nie trzeba wszystkiego przeklejać kilka razy.
+
+
+Lekcja 12: JS: Eventy
+
+przykład:
+<header class="main__header main__heading--js" id="top">
+        <h1 class..</h1>
+        <button class="action--js">Zmień nagłówek</button>
+</header>
+
+<button> vs <a>
+button: interakcje na stronie
+a: nawigacja
+
+element.addEventListener(type, listener [,options])
+
+przykład  cd:
+const button = document.querySelector('.action--js');
+
+const myClick = () => {
+        const heading = document.querySelector(".main__heading--js");
+        heading.innerHTML = 'Nowy tekst po naciśnięciu przycisku";
+}
+
+button.addEventListener('click', myClick);
+
+można także bezpośrednio zdefiniować funkcję jako argument:
+button.addEventListener('click', (e) => {
+        console.log(e.target);
+        console.log('halo');
+});
+
+bez tego e, również zadziała 
+button.addEventListener('mouseenter', () => {
+        console.log('halo');
+});
+
+e-to jest mouse event, dostajemy informacje o pozycji kursora itp itd.
+ciekawą pozycją jest target, jeśli wypiszemy e.target to dostajemy nasz element, czyli jeśli chcielibyśmy jeszcze cos zrobić
+z naszym elementem po kliknięciu to możemy za pomocą e.target to wywołać, oczywiście jest to dużo bardziej rozbudowane.
+
+
+Lekcja 13 Hamburger menu
+
+
+element.classList.add
+remove
+toggle
+contains
+
+
+Tydzien VII
+
+Lekcja 2 Pseudoelementy i Pseudoselektory
+
+- Css może tworzyć treść, dzięki własności content: ""
+
+element::before
+
+np.
+.week-summary__title::before {
+    content: "HELLO ";
+}
+
+albo
+
+
+.week-summary__title::after {
+    content: " GOODBYE";
+}
+
+Ta treść nie jest cześcią DOM-u, nie jest cześcią treści, nie można go np. skopiować, nie jest pełnoprawnym elementem, ale można z nim wiele rzeczy zrobić, np zmienić mu display
+
+Najczęściej elementy te używa się do celów dekoracyjych, np. ustawianie jakichś elementów interpunkcyjnych itp.
+
+- Pseudoklasy to modyfikator elementu, którego działanie wynika z innego działania (używa się je z pojedynczym dwukropkiem :)
+
+np.
+.navigation__link:hover {
+    color: green;
+}
+
+.navigation__link:visited {
+    color: grey;
+}
+
+.navigation__link:focus {
+    border: 3px solid yellow;
+}
+
+:first-child, :last-child, 
+selektor:not(selektor)
+np.
+.week--summary:not(.week--summary--special) {
+    background: hotpink;
+}
+
+Więcej pseudoklas:
+https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+
+
+
+Lekcja 3 .gitignore
+
+Zwyczajnie w pliku .gitignore wpisać nazwę pliku, który chcemy ignorować. Np. mając plik passwords, wystarczy, że w gitignore napiszemy: passwords, bez żadnych dodatkowych znaków.
+
+
+
+Lekcja 4 Node.js
+
+Node to taki JavaScript uruchamiany poza przeglądarką. Jest oparty na silniku chrome'owym VT. Różnica między nodem, a tym co dzieje się w przeglądarce to, że node nie ma dostępu do DOM
+i do wszystkich API związanych z DOM'em, z przeglądarką. To jest środowisko, które jest uruchamiane poza przeglądarką, więc nie ma żadnych query selector'ów i tego typu rzeczy.
+To jest taki konsolowy JavaScript.
+
+
+
+Lekcja 5 NPM i NPX
+
+-NPM - nie jest to tłumaczone jako node package manager (chociaż nim jest). Jest to narzędzie pozwalające nam na budowanie rzeczy szybciej.
+
+Po co nam te paczki?
+-Dodajemy do projektów sporo gotowych bibliotek/narzędzi
+-Nie można polegać na konfiguracji edytora / jego wtyczkach
+-Uniwersalne źródło ze wszystkimi narzędziami
+-Dostęp do aktualizacji
+
+O npm można również powiedzieć, że to taki app store / sklep play dla frontendowca, jest to taka skrzynka z narzędziami, których możemy użyć w naszym projekcie
+
+-Polecenia:
+npm init - to polecenie, które robimy raz w projkecie, ono inicjalizuje nasz projekt, tak, żeby można było korzystać z npm.
+
+szukanie paczek npmjs.com
+
+
+-Po zainstalowaniu choć jednej paczki tworzy się plik: package-lock.json, który trzyma informacje co zainstalowaliśmy, jest to plik, który nie edytujemy, można go wrzucić do repozytorium
+jest on po to, aby trzymać po prostu wersje odpowiednio i pilnować, żeby zależności się nie rozjeżdżały co się czasami zdarzało, można w skrócie powiedzieć, że jest to plik, który blokuje wersje.
+
+Pojawia się również katalog o nazwie node_modules tutaj się ściągają nasze paczki.
+
+-npm install <nazwa_paczki> --save   -jeżeli instalujemy narzędzia, które bedą widoczne w przeglądarce np. normalize.css
+lub 
+npm install <nazwa_paczki> --save-dev   -jeśli instalujemy narzędzie developerskie np. jakieś serwery
+
+-Jeśli usunie się katalog node_modules, a w package.json w dependecies są zdefiniowane paczki, zrobi się npm install to automatycznie zostaną ściągniete paczki, które są zdefiniowane w package.json
+
+-Nie commitujemy node_modules! 
+Jak zrobić, aby się nie commitował?
+Zakładamy plik .gitignore i wpisujemy: node_modules
+
+-Alternatywą dla npm-a jest Yarn.
+
+-npx 
+
+np. box cowsay SIEMA SIEMA
+
+To narzędzie robi tyle, że wypisuje nam za pomocą ascii art tekst który wpiszemy dalej.
+
+mozna zainstalowac taka paczke, aby miec ja w swoim projekcie i działała szybciej poprzez:
+npm install cowsay --save-dev
+
+
+Lekcja 6 Npm Scripts
+
+definiujemy polecenia dla npm w package.json
+fragment z package.json, dodamy polecenie start np:
+"scripts": {
+    "start": "node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+
+Lekcja 7 SASS/SCSS
+
+Problemy z CSS
+-porozrzucane klasy (bałagan w plikach)
+-@media oddzielone od elementu (konieczność ponownego definiowania)
+-kiepska czytelność plików (szczególnie przy zagnieżdżeniach)
+-brak możliwości definiowania funkcji do robienia podobnych rzeczy
+
+SASS to preprocesor CSS
+SASS potrzebuje narzędzia do działania
+
+SASS/SCSS - SASS jest narzędziem, ma swoją składnię i ma także składnię SCSS czyli są to tak naprawdę dwie różne składnie
+
+.scss - dla programisty
+.css - dla przeglądarki
+
+programista pisze scss -> nastepnie narzędzie sass zamienia te pliki na pliki .css i te cssy są zrozumiałe dla przeglądarki.
+
+https://www.sassmeister.com/
+
+Co daje sass czego nie daje css
+
+-$zmienna - np. 
+
+$myfavouritegrey: #ccc;
+$desktop: 1024px;
+.main {
+    color: $myfavouritegrey
+}
+
+@media (min-width: $desktop) {
+    .main {
+        color: red;
+    }
+}
+
+na css zostanie to przekonwertowane w tej sposób, że wszędzie gdzie występuje zmienna będzie podmieniona na jej wartość w tym przypadku #ccc i 1024px.
+
+
+-@ @mixin, @include
+
+@mixin borderBackground {
+    border-radius: 10px;
+    background: hotpink;
+}
+
+.main {
+    color: $myfavouritegrey
+    @include borderBackground;
+}
+
+można utworzyć również mixin, który przyjmuje parametry.
+
+@mixin borderBackgroundParameter($radius, $background) {
+    border-radius $radius;
+    background: $background;
+}
+
+.main {
+    color: $myfavouritegrey
+    @include borderBackgroundParameter(20px, red);
+}
+
+
+-@extend - wyrzuca styl na góre w pliku css jako osobna definicja
+
+.font-style {
+    font-size: 13px;
+    coloer: green;
+}
+
+.main {
+    color: $myfavouritegrey
+    @extend font-style;
+}
+
+
+-& parent selector
+
+.about {
+    color: red;
+}
+
+.about__title {
+    font-size: 20px;
+}
+
+.about__title--smaller {
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .about__title {
+        font-size: 18px;
+    }
+}
+
+
+to powyżej równa się temu:
+W samym zapisie jest to już tylko 8 linijek w porównaniu z 17 wcześnie plus wszystko trzymamy w jednym miejscu.
+
+.about-sass {
+    color: red;
+    &__title {
+        font-size: 20px;
+        &--smaller {
+            font-size: 16px;
+        }
+        @media (max-width: 768px) {
+            font-size: 18px;
+        }
+    }
+}
+
+w css wynik tego .about-sass bedzie wyglądał następująco:
+.about-sass {
+    color: red;
+}
+
+.about-sass__title {
+    font-size: 20px;
+}
+
+.about-sass__title--smaller {
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .about-sass__title {
+        font-size: 18px;
+    }
+}
+
+Kod wynikowy jest identyczny z pierwszą definicją, jednak wszystko jest zapisane w sass'ie w sposób zagnieżdżony.
+
+Należy pamiętać, że kiedy korzystyamy z preprocesorów NIE EDYTUJEMY plików wynikowych .css
+
+
+Lekcja 8 node-sass
+
+node-sass - narzędzie zamieniające pliki scss(sass) na css
+
+instalacja:
+npm install node-sass
+
+wywołanie node-sass: (przykład)
+npx node-sass main.scss main.css
+
+polecenie z atrybutem watch (-w) - Polecenie ciągle pracuje, wykrywa zmiany i generuje ponownie plik.
+npx node-sass -w main.scss main.css
+
+Można również te polecenie zdefiniować jako skrypt w package.json np.
+
+"scripts": {
+    "sass": "npx node-sass -w main.scss main.css",
+    "start": "node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+i wystarczy wywołać npm run sass, od tego momentu jeśli zapiszemy zmianę w pliku main.scss będzie generowana w pliku main.css.
+
+
+
+Lekcja Prace domowe: (Przerzucić na trello! Spróbuj wyestymować ile czasu zajmie dany task i zapisz ten czas)
+1. Dodaj before z ozdobnikiem do nagłówków.
+2. Zainstaluj node.js i napisz prosty skrypt z console.log
+3. Stwórz plik .gitignore i wpisz node_modules
+4. Zainicjuj projekt w projkecie homepage (npm init)
+5. Dodaj skrypt z cowsay, pobaw się przełącznikami (znajdziesz je w dokumentacji)
+6. Dodaj paczkę node-sass
+7. Przenieś zawartość style.css do scss/style.scss i stwórz skrypt w package.json
+8. Przerób BEM-a na składnię scss z wykorzystaniem &
+
+
+
+
+Tydzień VIII
+
+
+Lekcja 2
+
+Po co nam moduły?
+-Aplikacje szybko rosną i trudno trzymać wszystko w jednym pliku
+-Chcemy korzystać z wybranych funkcji w różnych plikach
+-Chcemy mieć porządek w projekcie
+-Chcemy korzystać z kodu udostępnianego przez innych developerów (albo udostępniać swój)
+
+
+Można importować w stylach poprzez:
+@import 'ścieżka'
+np.
+@import 'modules/week-summary.scss';
+
+
+Lekcja 3 import/export w js
+
+export something
+export default something
+
+import nazwaRzeczy from 'nazwa-modułu/ścieżka-do-z-pliku';  -działa w przypadku exportu default
+import {pierwszy, drugi} from 'nazwa-modułu/ścieżka-do-z-pliku';    -nawiasy kwadratowe jeśli chcemy importować rzeczy nazwane, jeśli więcej niż jedna wtedy po przecinku.
+import {hello as hi} from 'nazwa-modułu/ścieżka-do-z-pliku';    -z użyciem as można także stosować aliasy
+import * as newName     -importuje wszystkie exporty pod jeden alias
+
+
+Warto pamietać, że można także importować rzeczy z node_modules.
+np.
+import {Moment} from './node_modules/moment/moment.js';     -ogólnie tego nie robimy, cieżko importować coś z node_modules bez wspomagacza. Czyli bez webpack'a.
+
+
+Lekcja 4 Webpack
+
+Jest to:
+-Podstawowe narzędzie frontendowca
+-Może automatyzować procesy
+-Ułatwia development
+-Używają go wiodące frameworki i biblioteki
+-Warto znać podstawy
+
+
+Webpack posiada entry - input którego ścireżka to src/plik.js
+poleceniem npx webpack zostaje przekonwertowany i powstaje zminikowany plik dist/main.js - output, którego można później załączyć do naszej strony
+
+
+loader - pozwala na operacje na plikach innych niż JS
+
+plugin - pozwala na wykonywanie różnych operacji
+
+mode - webpack posiada dwa tryby 'development' i 'production'.
+
+Możliwości webpacka rozszerzamy za pomocą paczek z NPM
+
+
+Lekcja 5 StarterKit
+
+Webpack Starter Kit - Jest to swego rodzaju szablon z którego można korzystać przy tworzeniu swoich projektów, można z niego korzystać nawet do projektów komerycjnych
+
+https://github.com/maciejkorsan/wtf-webpack-starter/
+
+Co mamy w środku:
+-Serwer lokalny z autoodświeżaniem
+-Wspracie dla scss i sourcemap
+-Minifikacja
+-Babel
+-Publikacja na github pages
+
+
+npm run start - runs development mode
+
+npm run build - runs build process for production
+
+npm run publish - runs build process and publish the page using gh-pages branch
+
+DIST - jest wynikiem naszej pracy, zawartość tego katalogu publikujemy na serwerze. Nie commitujemy go.
+
+public/* -> dist/*
+katalog public - czasem potrzebujemy pliki, które bezpośrednio wrzucamy na serwer bez żadnego przetwarzania ich i takie pliki to mogą być np. ikony, jakiś robot.txt, indeksowanie itp.
+wszystko co się znajduje w public jest kopiowane tak jak jest bez zmian, do katalogu dist. 
+
+src/pages/plik.html -> dist/plik.html   - pliki.html również zwyczajnie zminifikowane lecą do dist.
+
+src/scss/main.scss -> dist/index.[hash].css     - pliki sassowe zamieniane są na pliki z unikalnym hashem tak samo z obrazkami.
+
+!! Nie edytujemy nic w katalogu dist !!
+
+
+
+Lekcja 8
+
+Zmienna w CSS - CSS Custom Properties
+
+Pseudoselektor :root - używamy ponieważ ma większą specyficzność niż inne selektory
+
+Definiujemy w :root, wartość - dowolna wartość możliwa w CSS
+
+np.
+
+:root {
+    --small-padding: 8px;
+    --text-color: yellow;
+}
+
+Pobranie wartości ze zmiennej
+
+h1 {
+    padding: var(--small-padding);
+    color: var(--text-color);
+}
+
+
+Co możemy zrobić jeszcze za pomocą custom properties w css to zmieniać wartość za pomocą java scriptu
+
+document.documentElement.style.setProperty('--zmienna','wartość')
+
+
+
+Lekcja: Prace domowe:
+
+0. Dodaj taski do trello i wyestymuj
+1. Utwórz z szablonu nowe repozytorium i sklonuj do siebie na dysk
+2. Przenieś istniejące strony html do src/pages
+3. Zawartość stylów ze starej strony wklej do src/scss/main.scss
+4. Zawartość skryptów ze starej strony wklej do src/js/index.js
+5. Dodaj bibliotekę moment, zaimportuj ją i wykorzystaj gdzieś na stronie np. moment().startOf('day').fromNow();
+6. Opublikuj stronę za pomocą skryptu publish
+7. Zrób przycisk zmieniający tryb strony - szczegóły w wideo
+
+7. Rozwiązanie:
+HTML:
+<article>
+  <button class="mode-js">Dark mode</button>
+    <header>
+        <h1>Mój pierwszy wpis</h1>
+    </header>
+    <p>Lorem Ipsum coś tam coś tam</p>
+  
+    <footer>
+        Napisano: 20 X 2020
+    </footer>
+</article>
+
+
+CSS:
+:root {
+  --background-color: white;
+  --text-color: black;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+
+JS:
+let isDark = false;
+
+const mode = document.querySelector('.mode-js');
+
+mode.addEventListener('click', () => {
+    if(!isDark) {
+        document.documentElement.style.setProperty('--background-color','black');
+        document.documentElement.style.setProperty('--text-color','white');
+        isDark = true;
+        mode.innerHTML = 'Light Mode';
+    } else if(isDark) {
+        document.documentElement.style.setProperty('--background-color','white');
+        document.documentElement.style.setProperty('--text-color','black');
+        isDark = false;
+        mode.innerHTML = 'Dark Mode';
+    }   
+});
+
+
+------------------
+
+
+Lekcja BONUS: HTML co robić, czego nie robić
+
+
+Czego nie robić:
+-Nie pisać html, który składa się tylko z divów - nie nadużywać ich, nie stostować ich do czego się da
+-Nie robić przycisków, headerów, loga, linków, itp. za pomocą diva
+-J.w. nie używać spanów wszędzie tam gdzie nie używamy div'a
+-Nie używać spanów jako label w formularzu
+-Nie używać znacznika a. z buttonem
+    <a> - nawigacja między dokumentami i kotwice wewnątrz dokumentu
+
+    <button> - akcje w danym dokumencie.
+
+-Brak używania tabel
+
+Co robić:
+-Należy używać znaczniki main,section,article itd.
+-Wybierajac znacznik, ZAWSZE kierujemy się jego znaczeniem
+-<main> - Główna cześć dokumentu.
+-<section> - Sekcje dokumentu. Dzielimy dokument na sekcje, np. jak w wordzie
+-<article> - Treść, która może funkcjonować samodzielnie. Jeśli nie wiemy kiedy używać section, a kiedy article to można zrobić analogicznie jak w gazecie, gdzie jest pewna sekcja, 
+która zawiera różne artykuły.
+-<header> - header można używać w kilku miejscach, może ich być wiele. Może być header artykułu, sekcji itd.
+-<footer> - stopka dokumentu/sekcji/artykułu
+-używać ul, li, ol. Nie tworzyć list za pomocą div'ów
+
+Przykład:
+
+ŹLE:
+<div>
+    <div>
+        <span>Mój pierwszy wpis</span>
+    </div>
+    <div>Lorem Ipsum coś tam coś tam</div>
+    <div>
+        Napisano: 20 X 2020
+    </div>
+</div>
+
+
+DOBRZE:
+<article>
+    <header>
+        <h1>Mój pierwszy wpis</h1>
+    </header>
+    <p>Lorem Ipsum coś tam coś tam</p>
+    <footer>
+        Napisano: 20 X 2020
+    </footer>
+</article>
+
+
+Poprawne używanie nagłówków:
+-Każda sekcja powinna mieć swój nagłówek
+-h1 - jeden dla dokumentu
+-Ważność nagłówków określa stopień zagnieżdżenia sekcji. Czyli nie używamy h4 bo chcemy napis mały, albo h1 na koniec dokumentu bo tam napis jest duży
+tylko używamy je po kolei chronologicznie od h1 od początku do h2,3,4-6, nie robiąc dziur a styl zmieniamy w css za pomoca klasy, wtedy należy ustawić odpowiedni font, wielkość itp.
+
+
+Poprawne pisanie formularzy:
+-Każdy input musi mieć label
+-Placeholder nie zastępuje label
+-Input bez label w projekcie? Użyj aria-label
+
+
+Pamietać o używaniu validatora!
+
+Pisząc HTML-a myśleć jaką treść on reprezentuje!
