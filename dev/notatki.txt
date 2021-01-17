@@ -696,7 +696,7 @@ Zakładamy plik .gitignore i wpisujemy: node_modules
 
 -npx 
 
-np. box cowsay SIEMA SIEMA
+np. npx cowsay SIEMA SIEMA
 
 To narzędzie robi tyle, że wypisuje nam za pomocą ascii art tekst który wpiszemy dalej.
 
