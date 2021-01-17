@@ -750,7 +750,7 @@ $desktop: 1024px;
     }
 }
 
-na css zostanie to przekonwertowane w tej sposób, że wszędzie gdzie występuje zmienna będzie podmieniona na jej wartość w tym przypadku #ccc i 1024px.
+na css zostanie to przekonwertowane w ten sposób, że wszędzie gdzie występuje zmienna będzie podmieniona na jej wartość w tym przypadku #ccc i 1024px.
 
 
 -@ @mixin, @include
