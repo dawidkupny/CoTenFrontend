@@ -903,9 +903,9 @@ Po co nam moduły?
 
 
 Można importować w stylach poprzez:
-@import 'ścieżka'
+@import "ścieżka"
 np.
-@import 'modules/week-summary.scss';
+@import "modules/week-summary.scss";
 
 
 Lekcja 3 import/export w js
@@ -914,7 +914,7 @@ export something
 export default something
 
 import nazwaRzeczy from 'nazwa-modułu/ścieżka-do-z-pliku';  -działa w przypadku exportu default
-import {pierwszy, drugi} from 'nazwa-modułu/ścieżka-do-z-pliku';    -nawiasy kwadratowe jeśli chcemy importować rzeczy nazwane, jeśli więcej niż jedna wtedy po przecinku.
+import {pierwszy, drugi} from 'nazwa-modułu/ścieżka-do-z-pliku';    -nawiasy sześcienne jeśli chcemy importować rzeczy nazwane, jeśli więcej niż jedna wtedy po przecinku.
 import {hello as hi} from 'nazwa-modułu/ścieżka-do-z-pliku';    -z użyciem as można także stosować aliasy
 import * as newName     -importuje wszystkie exporty pod jeden alias
 
@@ -935,7 +935,8 @@ Jest to:
 
 
 Webpack posiada entry - input którego ścireżka to src/plik.js
-poleceniem npx webpack zostaje przekonwertowany i powstaje zminikowany plik dist/main.js - output, którego można później załączyć do naszej strony
+poleceniem: 
+npx webpack zostaje przekonwertowany i powstaje zminikowany plik dist/main.js - output, którego można później załączyć do naszej strony
 
 
 loader - pozwala na operacje na plikach innych niż JS
