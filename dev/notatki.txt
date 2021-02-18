@@ -1239,4 +1239,30 @@
             JSON string -> obiekt
             JSON.parse(JSONString)
 
+    
+    Lekcja 9
+        Projektowanie, ogólne rady!
 
+            1. Zacznij od prawdziwej treści! - Content
+            2. Naszkicuj wstępny układ na papierze
+            3. Porzuć wizję strony idealnej, zacznij od najniższego poziomu, który daje jakąś wartość.
+            4. Działaj "krok po kroku" (one step a time)
+            5. Trzymaj się siatki/grida
+            6. Zacznij od czarnego/białego/odcieni szarości
+            7. Kolory zostaw na koniec i ogranicz ich liczbę do minimum
+            8. Nie wymyślaj koła na nowo
+            9. Wykorzystaj gotowe elementy / znajdź UI KIT
+            10. Kopiuj
+
+            Inspiracja designerskie/www
+                https://dribbble.com/
+                https://www.behance.net/
+                https://refactoringui.com/
+                https://www.awwwards.com/websites/
+                https://www.siteinspire.com/
+                https://codepen.io/
+                https://tympanus.net/codrops/
+                https://www.cssdesignawards.com/
+                https://pdkit.co/
+
+            
