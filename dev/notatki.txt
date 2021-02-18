@@ -1146,10 +1146,97 @@
 
     Lekcja 2
     
-    Autoprefixer:
-    https://autoprefixer.github.io/
+        Autoprefixer:
+        https://autoprefixer.github.io/
 
     Lekcja 3
-    Google fonts - dobra praktyka: nie stosować więcej niż dwóch fontów, one również zużywają zasoby, więc zbyt dużo może zwolnić ładowanie się strony, jak i brzydko wyglądać.
+        Google fonts - dobra praktyka: nie stosować więcej niż dwóch fontów, one również zużywają zasoby, więc zbyt dużo może zwolnić ładowanie się strony, jak i brzydko wyglądać.
 
-    @font-face - pozwala dołączyć plik z fontami, aczkolwiek rzadko używane, obecnie wczytuje się fonty z serwera.
+        @font-face - pozwala dołączyć plik z fontami, aczkolwiek rzadko używane, obecnie wczytuje się fonty z serwera.
+
+    Lekcja 5
+
+        Markdown, edytor - https://dillinger.io/
+
+        Za jego pomocą można zrobić ładne readme!
+        
+
+    Lekcja 6
+        Tablice w JS
+        
+        -Dodawanie elementów do tablicy w JS poprzez metodę tablica.push(element);
+            const myArray = ['X', 'D'];
+            const myString = 'LOL';
+            myArray.push(myString);
+
+        -Dodwanie elementu na początek tablicy.
+            tablica.unshift(element);
+
+        -Usunięcie elementu z początku tablicy, metoda nie przyjmuje żadnych elementów.
+            tablice.shift();
+
+        -Usuwanie elementu z końca tablicy
+            tablica.pop();
+
+        -Sprawdzanie czy mamy dany element w tablicy i zwrócenie jego indeksu (pierwszego napotkanego w przypadku większej ilości tych samych elementów):
+            tablica.indexOf(element);
+
+            Jeżeli takiego elementu nie ma w tablicy i wypiszemy np ten element np. console.log(tablica.indexOf(element)); - zostanie zwrócona wartość -1.
+            A więc trzeba uważać np. gdybyśmy chcieli napisać taki warunek
+
+            if(tablica.indexOf(element)) {} - czy istnieje dany element w tablicy i mimo, że nie istnieje to metoda zwróci wartość (-1) i warunek zostanie spełniony!!
+
+            Z kolei gdy zrobimy tak z elementem, który jest pierwszym elementem w tablicy, czyli jego indeks to 0, a więc mimo, że znajduje się on w tablicy warunek taki:
+            if(tablica.indexOf(element)) {}  - nie zostanie spełniony, metoda zwróci false, ponieważ jej rezultat to 0, a 0 jest odbierane jako false w jacaScript.
+            Należy uważać na takie rzeczy!
+            Rozwiązaniem tego jest sformułowanie warunku w ten sposób:
+            if(tablica.indexOf(element) >= 0) {}
+
+        -Usuwanie n elementów od danej pozycji
+            tablica.splice(index, liczbaElementów);
+
+        -Pobieranie n elementó od danej pozucji
+            tablica.slice(index, liczbaElementów);
+
+    
+    Lekcja 7
+        Pętle w JS
+        -klasyczna for
+            for(let i=0; i<3; i++) {
+                console.log(`${i} wykonanie pętli`);
+            }
+        -for each
+            const myArray = ['a', 'b', 'c', {name: 'James'}];
+
+            for(let element of myArray) {
+                console.log(element);
+            }
+
+
+    Lekcja 8
+        Przechowywanie danych w JS
+
+        -Przechowywanie zaczęło się od Cookies!
+            document.cookie - tak możemy podejrzeć ciasteczka.
+            Format zapisu ciastek to document.cookie = "nazwa = wartość"
+
+            Był to pierwszy mechanizm do przechowywania danych, obecnie nie są zbyt popularne do przechowywania danych, są lepsze sposoby.
+
+        -localStorage - do ręcznego wyczyszczenia (trwalsze) - jest dostępne nawet po wyłączeniu strony (jeśli nie zostało ręcznie usunięte)
+            localStorage.setItem('nazwa', wartość)
+
+            localStorage.getItem('nazwa') - pobranie wartości z localStorage
+
+            localStorage.removeItem('nazwa') - usunięcie wartości z localStorage
+
+        -sessionStorage - do zamknięcia sesji (zakładki przeglądarki)
+
+
+        -JSON 
+            obiekt -> JSON string
+            JSON.stringify(obiekt)  -   metoda służy do przekształcenia obiektu w String np. w kontekscie localStorage, należy pamiętać, że będzie to tylko napis.
+
+            JSON string -> obiekt
+            JSON.parse(JSONString)
+
+
