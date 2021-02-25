@@ -1520,7 +1520,7 @@
             1. Załóż nowe repozytorium (np. hydrapp)
             2. Wgraj starterkit
             3. Uzupełnij manifest.json ze swoim adresem i odkomentuj wymagane linijki
-            4. W figmie otwóz hydrapp.fig
+            4. W figmie otwórz hydrapp.fig
             5. Przenieś wygląd na kod
             6. Stwórz querySelectory do wszystkich elementów z którymi masz interakcje (buttony, wartość licznika)
             7. Do przycisków dodaj eventlistenery:
@@ -1531,15 +1531,175 @@
             9. jeśli pod kliczem nic nie ma - wstaw 0 (nowy dzień)
             10. W ten sposób w localStorage będziesz mieć nową historię dni (możesz ją później wykorzystać - może kolejna podstrona z historią?)
 
-            Flow urchomienia apli (js)
+            Flow urchomienia aplikacji (js)
             1. Sprawdź czy pod kluczem z dzisiejszą datą jest jakaś wartość / w ogóle istnieje
                 a. jeśli tak - wstaw ją w licznik
                 b. jeśli nie - ustaw ją na zero, stwórz wpis w localStorage i wstaw ją w licznik
             2. Po kliknięciu w odpowiedni button zmieniaj odpowiednio wartość w localStorage i aktualizuj wartość licznika w aplikacji
             3. Po północy każdego dnia kiedy uruchomisz aplikację stworzy się nowy klucz w localStorage i zaczniesz od nowa.
 
-        
+
+#Tydzień 11
+
+    Lekcja 2
+        -Destrukturyzacja w JS
+            Destrukturyzacja pozwala na wyciągnięcie pól z obiektu/tablicy itp. do osobnej zmiennej.
+
+            np.
+                const person = {name: 'andrzej', age: 20};
+
+                //Destrukturyzacja:
+                const {name, age} = person;
+                
+                console.log(name);
+                console.log(age);
+
+                //z tablicą:
+                const food = ['apple', 'kiwi', 'oragne'];
+
+                console.log(food);
+                const [first, second] = food;
+                console.log(first);
+
+                //dostanie się do elementu trzeciego elementu pomijając drugi:
+                const [first, ,third] = food;
+                console.log(third);
 
 
+        -Spread operator - 
 
-        
+            np.
+                const person = {
+                    name: 'andrzej',
+                    age: 32
+                }
+
+                const address = {
+                    city: 'Olesno',
+                    country: 'Poland'
+                }
+
+                console.log(person);
+                console.log(address);
+
+                //aby połączyć te obiekty, da się to zrobić w poniższy sposób (jest to na tzw. piechotę), ale gdyby tych właności było więcej, byłoby to kłopotliwe.
+                const personWithAddress = {
+                    name: person.name,
+                    age: person.age,
+                    city: address.city,
+                    country: address.country
+                }
+
+                console.log(personWithAddress);
+
+
+                //W zamian możemy użyć Spread operator:
+                const personWithAddress = {
+                    ...person,
+                    ...address
+                }
+                
+                console.log(personWithAddress);
+
+                //Powyższy sposób, nie jest to jedyny sposób wykorzystania Spread operatora
+
+                const fruits = ['apple', 'kiwi', 'orange'];
+                const drinks = ['water', 'juice', 'beer'];
+
+                console.log(fruits);
+                console.log(drinks);
+
+                //teraz chcemy zrobić tablicę fruits and drinks
+                const fruitsAndDrinks = [fruits[0], fruits[1], fruits[2], drinks[0]];
+
+                //ale można zrobić to za pomocą Spread operatora
+                const fruitsAndDrinks = [...fruits, ...drinks];
+
+                //można też łączyć z obiektami:
+                const fruitsAndDrinks = ['siema', ...fruits, ...drinks];
+
+
+            Spread Operator jest takim skrótem, który pozwala na wrzucanie wartości po kolei do obiektów bądź tablic. Przydaje się bardzo przy korzystaniu z danych 
+            zewnętrznych, warto to znać, mocno to ułatwia pracę i warto z tego korzystać.
+
+    
+    Lekcja 3
+        - Pobieranie danych z zewnątrz, do tego służy API 
+            API - Application programming interface
+            Jest to popularna technika tworzenia aplikacji. Wydzielamy jakąś cześć naszej aplikacji, odpowiedzialną za to, żeby dane mogły być wprowadzane bądź pobierane przez zewnętrzne
+            lub wewnętrzne serwisy. API można wyobrazić sobie jako zestaw funkcji, które mogą być wykorzystywane przez innych developerów, nie trzeba tego pisać od zera, wymyślać na nowo.
+
+            API
+                - pozwala na wykonanie operacji (np. pobieranie, dodawanie, usuwanie, modyfikacja) w aplikacji, bez konieczności poznania jej budowy (od środka)
+                - JS udostępnia nam szereg różnych API
+                - wiele gotowych produktów udostępnia nam swoje API (google, slack, github itp.)
+
+        - Popularnym sposobem konstruowania takiego API jest REST - Representational State Transfer
+
+        - Jest jeszcze coś takiego jak GraphQL i staje się bardzo popularne - warto się zainteresować
+
+        - Łączenie się z API
+            developer.github.com/v1/ - dokumentacja github'oego API 
+
+            Np. chcemy pobrać listę użytkowników z jakiegoś konta, szukamy takiego rozwiązania, zakładka repositories -> i jest opcja: list repositories for a user.
+                To co nas interesuje to taki fragment:
+
+                    GET /users/:username/repos   - mamy metodę GET i mamy ciąg znaków mówiący o jakimś adresie
+
+                    Potrzebujemy coś co pozwoli nam na pobranie wyników, można korzystać z aplikacji Postman, jest to aplikacja, która pozwala nam na podglądanie żądań HTTP
+                    wysyłanie ich, tworzenie itd.
+
+
+    Lekcja 4
+        - Fetch API - opiera się o mechanizm zwany Promise. 
+        - Promise opiera się o mechanim, który polega na takiej konstrukcji:
+
+                something()
+                .then((response) => {
+                    doSomething;
+                })
+                .catch((error) => {
+
+                })
+                console.log('test');    <- może wykonać się przed akcją do something.
+
+            Działa to w ten sposób, że nie blokuje to kodu, jeżeli coś trwa długo, np, pobieranie danych to to nie blokuje reszty kodu, konstrukcja ta zapisuje się w pamięci 
+            i czeka na wykonanie, jeśli zostanie wykonane wtedy jakaś operacje się wykona, a więc kod po tej konstrukcji może zostać wykonany przed nią.
+            
+            Jest to Asynchroniczny sposób wykonania kodu. Należy pamiętać, że nie można uzależniać synchroniczności działania tej konstrukcji i naszego kodu aplikacji.
+
+        - Jak wygląda fetch API
+            
+            fetch("https://api.github.com/users/dawidkupny/repos")
+                .then(respo => resp.json())     //<- to co tutaj się wykona jest zwracane dalej
+                .then(respo => {
+                    //w resp mamy jsona z odpowiedzią
+                })    
+                .catch(error => {
+                })
+            
+
+            Np.
+                fetch("https://api.github.com/users/dawidkupny/repos")
+                .then(respo => resp.json())
+                .then(respo => {
+                    for(let repo of resp) {
+                        const {name, html_url} = repo;
+                        const repositoryList = document.querySelector('.list--js');
+                        const myTemplate = `<li>
+                        ${name} <a href="${html_url}" title="link do repozytorium ${name} na githubie">link do githuba</a>
+                        </li>`;
+                        repositoryList.innerHTML += myTemplate;
+                    }
+                })    
+                .catch(error => {
+                    console.log(error);
+                })
+
+
+    Lekcja 5
+        - Nie ma oprogramowania idealnego
+        Jak przetestować działanie oprogramowania na innych systemach/urządzeniach?
+            1) Browserstack  - narzędzie do testowania na różnych przeglądarkach, systemach, urządzeniach
+            2) Browser shots - podobne j.w.
+            3) Maszyny wirtualne - VirtualBox
