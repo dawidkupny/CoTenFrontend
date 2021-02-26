@@ -1671,8 +1671,8 @@
         - Jak wygląda fetch API
             
             fetch("https://api.github.com/users/dawidkupny/repos")
-                .then(respo => resp.json())     //<- to co tutaj się wykona jest zwracane dalej
-                .then(respo => {
+                .then(resp => resp.json())     //<- to co tutaj się wykona jest zwracane dalej
+                .then(resp => {
                     //w resp mamy jsona z odpowiedzią
                 })    
                 .catch(error => {
@@ -1681,8 +1681,8 @@
 
             Np.
                 fetch("https://api.github.com/users/dawidkupny/repos")
-                .then(respo => resp.json())
-                .then(respo => {
+                .then(resp => resp.json())
+                .then(resp => {
                     for(let repo of resp) {
                         const {name, html_url} = repo;
                         const repositoryList = document.querySelector('.list--js');
@@ -1703,3 +1703,252 @@
             1) Browserstack  - narzędzie do testowania na różnych przeglądarkach, systemach, urządzeniach
             2) Browser shots - podobne j.w.
             3) Maszyny wirtualne - VirtualBox
+        
+        - Progressive enhancement - Pełen dostęp do treści pomimo brak wsparcia technologicznego,
+            do tego można zastosować regułę css-woą @supports
+
+            np.
+                @supports (display: grid) {
+                    div {
+                        display: grid;
+                    }
+                }
+
+    
+    Lekcja 6
+        Jak przyspieszyć stronę?
+        - DevTools -> Network
+            Warto zaznaczyć opcję Disable cache
+        - Lighthouse -> Audit
+            Dobrze odpalać to gdy strona jest już na serwerze, ponieważ lokalnie zawsze wszystko dobrze się ładuje
+        - https://web.dev
+        - https://tinypng.com/
+        - Zastanowić się czy potrzebujemy wszystkich paczek, które zaciągamy z NPMa?
+        - Minifikacja (nasz starterkit sam w sobie minifikację posiada)
+        - CSS krytyczny
+            https://web.dev/extract-critical-css/
+
+
+    Lekcja prace domowe
+        1. Przetestuj swoje projekty na starszych przeglądarkach (i spróbuj naprawić błędy)
+        2. Przygotuj skrypt do ściągania listy repozytoriów ze swojego konta na githubie. Wykorzystaj Fetch API i destrukturyzację
+        3. Za pomocą postmana wykonaj zapytanie post na https://dev.cotenfrontend.pl z polami name oraz riddle jako wartość riddle wpisz cotenfrontend wartość name to Twoje imię
+        4. Zoptymalizuj swoje projekty
+
+
+#Tydzień 12
+    
+    Lekcja 2
+
+        - <audio> - tag audio, pozwala na wrzucenie na stronę muzyki
+            np. <audio src="url/sciezka" controls/autoplay/loop/'rozne parametry'>
+        
+        - <video> - tag audio, pozwala na wrzucenie filmu na stronę
+            <video src="url/sciezka" controls/autoplay/loop/'rozne parametry>
+
+            Można naturalnie ostylować, a także sterować wszystkim za pomocą JavaScriptu, tworzyć własny player itp. 
+                np.
+                HTML:
+                    <video class="video video--js" src="url"> 
+
+                    <button>play play--js</button>
+                    <button>pause pause--js</button>
+                    <button>stop stop--js</button>
+
+                JS:
+                    const video = element.querySelector('.video--js');
+                    const playButton = element.querySelector('.play--js');
+                    const pauseButton = element.querySelector('.pause--js');
+                    const stopButton = element.querySelector('.stop--js');
+
+                    playButton.addEventListener('click', (e) => {
+                        video.play();
+                    })
+
+                    pauseButton.addEventListener('click', (e) => {
+                        video.pause();
+                    })
+
+                    stopButton.addEventListener('click', (e) => {
+                        video.pause();
+                        element.currentTime = 0;
+                    })
+
+
+                Co ciekawe nie ma funkcji stop, nie istnieje stop w specyfikacji, trzeba zrobić to za pomocą
+                    element.currentTime = 0; 
+                jak w przykładzie powyżej.
+
+
+        - Aby osadzić film z youtube na stronie, należy wejść na youtube, pod filmem kliknąć 'udostępnij' i wybrać opcję 'umieść', są różne opcje umieszczenia, ale można
+            wybrać domyślny kod i po prostu wkleić go do html, będzie gotowe video z youtube osadzone w html.
+
+        - <iFrame> - przykładowo osadzając na stronie film z youtube korzystamy ze znacznika <iFrame> - tzw. pływająca ramka, iFrame pozwala na zawieranie/osadzanie 
+            strony w stronie, w ten sposób można dołączać inne strony, video itp.
+            Można się również zabezpieczyć przed czymś takim, jest w JS odpowiednia funkcja, która wykrywa jeśli strona jest częścią ramki to przeładuj stronę 
+            i załaduj zawartość osobno w adresie. To pozwala na zabezpieczenie, ponieważ te osadzanie strony w stronie pozwala na wiele nadużyć, ludzie wykorzystują to do
+            podszywania się pod inne strony, nabijania wyświetleń itp.
+
+
+    Lekcja 3
+        frameworki CSS
+            - Bootstrap
+                Zbiór gotowych plików do zastosowania. Bootstrap daje gotowe elementy, klasy itp, które pozawlają na budowę strony bardzo szybko bez dużej znajomości html, css czy js. 
+                Można go zainstalować jako osobne paczki przez NPM lub skorzystać z CDN, czyli z gotowych plików do skorzystania, są dostępne na zewnętrznym serwerze.
+                Warto korzystać z dokumentacji bootstrapa jest bardzo dobra. Kiedyś był bardzo popularny, jednak jego minusem jest to, że z nim mamy dostarczonych bardzo dużo elementów,
+                których nie używamy i czasem jest szybciej i optymalniej napisać coś samemu.
+            
+            - Tailwind
+                Jest frameworkiem, który powstał po to, żeby nie trzeba było pisać css-ów. Działa dobrze z react'em i z innymi rzeczami bo jest tylko css'owy. 
+                Tak jak ich hasło mówi 'Większość frameworków css'owych robi za dużo' tak oni udostępniają tylko klasy, które pozwalają nam na dodawanie własności css'owych,
+                np. dodanie klasy text-center zrobi dokładnie to samo co dodanie własnej klasy i wpisanie text-center. Kiedy się dłużej pobędzie z tym frameworkiem, to dość
+                łatwo i szybko można to pisać. Minus jest taki, że czasami tych klas trzeba trochę nawrzucać, żeby zrobić jakiś element, robi się też pewny chaos z tymi klasami cssowymi. 
+                Można go zainstalować za pomocą NPM, można też importować tak jak w sass'ach, mamy także plik konfiguracyjny, który pozwala na stworzenie własnej skórtki w configu. 
+                Jak nie chcemy zakładać nowego/dużego projektu, chcemy coś zrobić na szbko to można skorzystać z podlinkowania gotowego pliku css, który dołączamy do html'a, 
+                jednak w ten sposób tracimy część funkcjonalności, dodawania pluginów itd.
+                Przy normalnym projekcie najlepiej dodać go za pomocą NPM'a.
+                Nie ma tutaj żadnego JavaScriptu, więc wszystko trzeba obsłużyć samemu, np. w przypadku bootstrapa część JavaScriptu jest napisana.
+
+
+    Lekcja 4
+        Selektory w CSS
+            - + - Adjecent sibling combinator elementA + elementB - Selektor bezpośredniego "rodzeństwa"
+                Np.
+                
+                HTML
+                    <ul>
+                        <li class="item"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    <ul>
+                
+                CSS
+                    .item + li {
+                        background: blue;
+                    }
+
+                Polega to na tym, że jeśli drugi element (w przykładzie li) jest dokładnie za pierwszym elementem (w przykładzie item), jest jego pierwszym bezpośrednim wystąpieniem to możemy mu nadać jego style.
+                Z innym elementem, drugim, czwartym i każdym innym to nie zadziała, należy wybrać zawsze element, który jest bezpośrednio sąsiadujący. Chodzi o to, że jeśli chcemy coś ostylować
+                jedno pod drugim to możemy to wykorzystać.
+            
+            
+            - ~ - General sibling elementA ~ elementB - Selektor ogólnego "rodzeństwa"
+                Np.
+
+                HTML
+                    <ul>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="item"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    <ul>
+
+                CSS
+                    .item ~ li {
+                        background: blue;
+                    }
+
+                Działa on w sposób, że wybiera całe rodzeństwo tego typu, które występuje po nim, wyłacznie siebie, jak w przykładzie powyżej tło niebieskie będą miały elementy
+                4 i 5.
+
+
+            - > - Child combinator elementA > elementB - Selektor "bezpośredniego" dziecka
+                Np.
+
+                HTML
+                    <ul class="list">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="item"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    <ul>
+
+                CSS
+                    .list > .item {
+                        background: blue;
+                    }
+
+                Oznacza, że wszystkie bezpośrednie dzieci, które mają klasę item (z przykładu) dostaną te style, czyli w przykładzie tło będzie miał element 3, item jako dziecko list.
+                Przydaje się czasem w nawigacji, gdy mamy zagnieżdżone listy nawigacyjne i chcemy ostylować coś na hover i jest na ogólnej liście, nie mamy na przykład dostępu do html-a 
+                to takie rozwiązanie się przydaje.
+
+
+            - [] - Atrribute selcetor [attr=value]
+                Np.
+
+                HTML
+                    <ul class="list">
+                        <li><a href="site.html">1</a></li>
+                        <li><a href="https://cotenfrontend.pl">2</a></li>
+                        <li class="item"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    <ul>
+
+                CSS
+                    [href] {
+                        color: red;
+                    }
+
+                Pozawala na wybieranie rzeczy z html-a za pomocą atrybutów. Wszystkie elementy, które mają atrybut href zostaną ostylowane. Warto wiedzieć, że atrybuty możemy 
+                tworzyć również sobie sami, np. data-something i wykorzystać w css. 
+                Możemy także wyszukiwać po wartości np.
+
+                [href="site.html"] {
+                    color: yellow;
+                }
+
+                Możemy też sprawdzić linki, które zawierają jakąś wartość. Tutaj mamy kilka opcji. 
+                    * - gwiazdka oznacza, że podana wartość musi się gdzieś znaleźć (patrz punkt 1.), a jeśli chcemy, żeby się zaczynało od jakiegoś ciągu znaków można zastosować:
+                    ^ - patrz punkt 2.
+                    $ - jeśli chcemy, żeby link się kończył daną wartością.
+
+                    1. Link ma zawiera jakąś wartość tekstową:
+                        [href*="coten"] {
+                            color: green;
+                        }
+
+                    2. Wszystkie linki, które idą na zewnątrz poza nasz serwis:
+                        [href^="https"] {
+                            color: green;
+                        }
+
+                    - 
+                        [href$="https"] {
+                            color: green;
+                        }
+
+    
+    Lekcja 6
+        Jak ustawić github pages na user.github.io
+        https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages
+
+        Krótka instrukcja:
+            1. załóż puste repozytorium / wykorzystaj starterkit twojanazwa.github.io 
+                - nazwa repozytorium musi być twojanazwa.github.io koniecznie, w moim przypadku dawidkupny.github.io!
+            2. utwórz branch source i ustaw jako domyślny (na githubie) Settings -> Branches -> Default branch
+            3. usuwamy branch master, żeby narazie mieć na czysto jeden branch source (przy publikacji pliki dist będą lecieć na master, który się utworzy)
+            4. sklonuj repozytorium na dysk
+            5. edytujemy package.json   - po prostu dodajemy końcówkę "-b master"
+                
+                "publish": "npm run build && gh-pages -d dist -b master"
+
+            6. powinno działać!
+
+
+    Lekcja 7
+        Usprawnienie repozytorium na githubie:
+            Uzupełnić sekcję about. Opis, link do gotowej strony, tematy związane z repozytorium.
+    
+
+    Lekcja 8
+        Połączenie z mailem lub telefonem za pomocą linku w html-u
+
+            <a href="mailto:dawid@kupny.com">napisz do mnie"</a>    - Otworzy się program pocztowy z wpisanym adresatem. Można też w chrome skonfigurować, żeby otwierał się gmail.
+
+            <a href="tel:+48231231321">Zadzwoń</a>  - w telefonie uruchomi się aplikacja telefoniczna i można dzwonić do takiej osoby.
+            
